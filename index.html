@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Word Guess Game</title>
+
+<!--get that sweet sweet bootstrap grid-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+</head>
+
+<body>
+
+<h1>Hangman! (without the gallows!)</h1>
+<div class="container">
+<div class="row">
+    <div class="col-lg-6">
+        <div id="spaces">
+            <p></p>
+        </div>
+    </div>
+</div>
+
+</div>
+
+
+<!---->    
+<script type="text/javascript">
+        
+//In the list of novels, there's merit to also having the program read only lowercase
+var WordsList ={
+    Grendel: "Grendel",
+    TheScarletLetter: "The Scarlet Letter",
+    Hamlet: "Hamlet",
+    AnimalFarm: "Animal Farm",
+    BraveNewWorld: "Brave New World",
+    Night: "Night",
+    TheOdyssey: "The Odyssey",
+    PrideAndPrejudice: "Pride and Prejudice"
+};
+
+
+//Section: VARIABLES
+var Wins = 0;
+var Losses = 0;
+var GuessesLeft = 10;
+
+
+//Comment: When the page loads, the document should select a word from WordsList and display the appropriate number of spaces
+var ChosenWord = function (obj) {
+    var keys = Object.keys(obj)
+    return obj[keys[ keys.length * Math.random() << 0]]; 
+};
+
+var Word=ChosenWord(WordsList);
+var WordLength = Word.length;
+var Blanks = 0;
+
+//Comment: This was useful to see if the above random word chooser was working
+// for (var i = 0; i < WordLength ; i++) {
+//         alert(Word.charAt(i));
+//         };
+
+//Section: GAME PREPARATION
+//Comment: this for loop should display spaces according to the number of letters in the chosen word
+for (var i = 0; i < WordLength ; i++) {
+    if (Word.indexOf(i) !== " "){
+        Blanks++;
+//This works but it requires you to fill in the blanks in the next part of the guessing function
+    }
+};
+
+for (var i = 0; i < Blanks ; i++) {
+    //want to write inside the "spaces" div in the HTML
+    // document.getElementById("spaces").innerHTML = "_";
+    var Spaces = document.getElementById("spaces");
+    var space = document.createElement("div");
+    space.textContent = "_";
+
+    Spaces.appendChild(space);
+    //need to either create a new HTML element or add to the string of blanks
+
+    };
+
+
+
+
+//Section: FUNCTIONS FOR LETTER GUESSING EXECUTION
+//Comment: I don't know if this array is actually necessary for the mission here...
+//Comment: var Alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r","s", "t", "u", "v", "w", "x", "y", "z"];
+
+document.onkeyup=function(event){
+console.log(KeyboardEvent);
+//Comment: This is checking if the pressed key matches any of the letters in the randomly selected word from WordsList
+//Comment: Alphabet.indexOf( event.key ) !== -1      i had this but i'm taking out the alphabet array... don't need that.
+// if (Word.indexOf(event.key) !== -1){
+//     for (var j = 0; j<WordLength; j++){
+//         if Word[j]
+//     };
+// };
+
+
+};
+
+
+
+//Comment: Include a guessing function?? Shot in the dark?
+
+
+
+    </script>
+
+
+</body>
+</html>
