@@ -67,23 +67,23 @@ var Blanks = 0;
 //Section: GAME PREPARATION
 //Comment: this for loop should display spaces according to the number of letters in the chosen word
 for (var i = 0; i < WordLength ; i++) {
-    if (Word.indexOf(i) !== " "){
-        Blanks++;
-//This works but it requires you to fill in the blanks in the next part of the guessing function
-    }
-};
-
-for (var i = 0; i < Blanks ; i++) {
-    //want to write inside the "spaces" div in the HTML
-    // document.getElementById("spaces").innerHTML = "_";
     var Spaces = document.getElementById("spaces");
     var space = document.createElement("div");
-    space.textContent = "_";
-
+    space.textContent = Word[i];
     Spaces.appendChild(space);
-    //need to either create a new HTML element or add to the string of blanks
+};
 
-    };
+// for (var i = 0; i < Blanks ; i++) {
+//     //want to write inside the "spaces" div in the HTML
+//     // document.getElementById("spaces").innerHTML = "_";
+//     var Spaces = document.getElementById("spaces");
+//     var space = document.createElement("div");
+//     space.textContent = "_";
+
+//     Spaces.appendChild(space);
+//     //need to either create a new HTML element or add to the string of blanks
+
+//     };
 
 
 

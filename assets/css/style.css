@@ -4,8 +4,20 @@ div{
     text-align: center;
     width: 30px;
     margin-left:20px;
+    border-color:rgb(0, 0, 0);
+    border-bottom: 5px;
 }
 
 h1 {
     Text-align: center;
+}
+
+#space {
+    border-bottom:rgb(0, 0, 0);
+
+}
+
+space {
+    border-bottom:rgb(0, 0, 0);
+
 }
