@@ -106,18 +106,28 @@ document.getElementById("spaces").innerHTML = BlankArray[i] + "\xa0\xa0\xa0\xa0"
 
 //Section: FUNCTIONS FOR LETTER GUESSING EXECUTION
 //Here we keep tabs on whether the player has run out of guesses
-while (GuessesLeft>0) {
+while (GuessesLeft > 0) {
+    
     document.onkeyup=function(event){
     
-    if(Word.indexOf(event.key) !==-1){
+    if (Word.indexOf(event.key) !== -1 ){
         var guess = event.key;
-    } 
+        console.log(guess);
+        var guessNumber = Word.indexOf(event.key);
+        console.log(guessNumber);
+
+        BlankArray[guessNumber]= guess;
+    
+    }
     //for an incorrect guess you are penalized
     else {
         GuessesLeft-1;
     };
     // console.log(KeyboardEvent);
-   
+    
+
+
+
     };
 
 
