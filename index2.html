@@ -7,14 +7,29 @@
     <title>Word Guess Game</title>
 
 <!--get that sweet sweet bootstrap grid-->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 
 </head>
 
 <body>
 
 <h1>Hangman! (without the gallows!)</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+           <div class="content">
+               <p id= Wins></p>
+               <p id= Losses></p>
+               <p id= GuessesLeft></p>
+           </div>
+        </div>
+    </div>
+    
+    </div>
+
 <div class="container">
 <div class="row">
     <div class="col-lg-12">
@@ -46,7 +61,11 @@ var WordsList ={
 //Section: VARIABLES
 var Wins = 0;
 var Losses = 0;
-var GuessesLeft = 10;
+
+
+document.getElementById("Wins").innerHTML = "Wins: " + Wins;
+document.getElementById("Losses").innerHTML = "Losses: " + Losses;
+document.getElementById("GuessesLeft").innerHTML = "Guesses Left: " + GuessesLeft;
 
 
 //Comment: When the page loads, the document should select a word from WordsList and display the appropriate number of spaces
@@ -58,6 +77,7 @@ var ChosenWord = function (obj) {
 var Word=ChosenWord(WordsList);
 var WordLength = Word.length;
 var Blanks = 0;
+var BlankArray=[];
 
 //Comment: This was useful to see if the above random word chooser was working
 // for (var i = 0; i < WordLength ; i++) {
@@ -65,35 +85,48 @@ var Blanks = 0;
 //         };
 
 //Section: GAME PREPARATION
-//Comment: this for loop should display spaces according to the number of letters in the chosen word
+//Comment: this for loop should display letters according to the number of letters in the chosen word
+// for (var i = 0; i < WordLength ; i++) {
+//     document.getElementById("spaces").innerHTML +=  Word[i] + "\xa0\xa0\xa0";
+
+// };
+
 for (var i = 0; i < WordLength ; i++) {
-    var Spaces = document.getElementById("spaces");
-    var space = document.createElement("div");
-    space.textContent = Word[i];
-    Spaces.appendChild(space);
+    BlankArray[i] = "_";
+    // document.getElementById("spaces").innerHTML = BlankArray[i]+ "\xa0\xa0\xa0";
+    };
+    
+var GuessesLeft = WordLength;
+
+//This is not working for me at all. Why is this so FUCKING RETARDED
+for (var i = 0; i < WordLength ; i++) {
+document.getElementById("spaces").innerHTML = BlankArray[i] + "\xa0\xa0\xa0\xa0";
 };
-
-// for (var i = 0; i < Blanks ; i++) {
-//     //want to write inside the "spaces" div in the HTML
-//     // document.getElementById("spaces").innerHTML = "_";
-//     var Spaces = document.getElementById("spaces");
-//     var space = document.createElement("div");
-//     space.textContent = "_";
-
-//     Spaces.appendChild(space);
-//     //need to either create a new HTML element or add to the string of blanks
-
-//     };
-
-
 
 
 //Section: FUNCTIONS FOR LETTER GUESSING EXECUTION
-//Comment: I don't know if this array is actually necessary for the mission here...
-//Comment: var Alphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r","s", "t", "u", "v", "w", "x", "y", "z"];
+//Here we keep tabs on whether the player has run out of guesses
+while (GuessesLeft>0) {
+    document.onkeyup=function(event){
+    
+    if(Word.indexOf(event.key) !==-1){
+        var guess = event.key;
+    } 
+    //for an incorrect guess you are penalized
+    else {
+        GuessesLeft-1;
+    };
+    // console.log(KeyboardEvent);
+   
+    };
 
-document.onkeyup=function(event){
-console.log(KeyboardEvent);
+
+
+
+
+
+
+
 //Comment: This is checking if the pressed key matches any of the letters in the randomly selected word from WordsList
 //Comment: Alphabet.indexOf( event.key ) !== -1      i had this but i'm taking out the alphabet array... don't need that.
 // if (Word.indexOf(event.key) !== -1){

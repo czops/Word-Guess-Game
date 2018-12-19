@@ -2,7 +2,6 @@ div{
     
     display: inline;
     text-align: center;
-    width: 30px;
     margin-left:20px;
     border-color:rgb(0, 0, 0);
     border-bottom: 5px;
@@ -12,12 +11,13 @@ h1 {
     Text-align: center;
 }
 
-#space {
-    border-bottom:rgb(0, 0, 0);
 
-}
-
-space {
-    border-bottom:rgb(0, 0, 0);
-
+spaces {
+    border-color:rgb(0, 0, 0);
+    display: inline-block;
+    border-bottom: 5px;
+    font: rgba(0, 0, 0);
+    opacity: 0%;
+    font-size: 16pt;
+    font-family: Arial, sans-serif;
 }
