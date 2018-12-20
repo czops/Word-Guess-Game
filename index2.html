@@ -98,7 +98,7 @@ for (var i = 0; i < WordLength ; i++) {
     
 var GuessesLeft = WordLength;
 
-//This is not working for me at all. Why is this so FUCKING RETARDED
+//This is not working for me at all...
 for (var i = 0; i < WordLength ; i++) {
 document.getElementById("spaces").innerHTML = BlankArray[i] + "\xa0\xa0\xa0\xa0";
 };
@@ -117,7 +117,7 @@ while (GuessesLeft > 0) {
         console.log(guessNumber);
 
         BlankArray[guessNumber]= guess;
-    
+
     }
     //for an incorrect guess you are penalized
     else {
