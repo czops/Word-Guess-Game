@@ -108,16 +108,20 @@
                 var guess = Word.indexOf(event.key);
                 BlankArray[guess] = event.key;
                 console.log(guess);
+                // DisplayedWord[guess] = event.key;
                 // var guessNumber = Word.indexOf(event.key);
                 // console.log(guessNumber);
 //Need to display the word again
-                document.getElementById("spaces").innerHTML = DisplayedWord;
+                
                 //BlankArray[guessNumber] = guess;
+            };
+            DisplayedWord = "";
 
-                for (var i = 0; i < WordLength; i++) {
+            for (var i = 0; i < WordLength; i++) {
                     DisplayedWord += (BlankArray[i] + "\xa0\xa0");
                 };
-            };
+                document.getElementById("spaces").innerHTML = DisplayedWord;
+        
         };
 
 
