@@ -97,35 +97,36 @@
         for (var i = 0; i < WordLength; i++) {
             BlankArray[i] = "_";
             DisplayedWord += (BlankArray[i] + "\xa0\xa0");
+            document.getElementById("spaces").innerHTML = DisplayedWord;
         };
 
         console.log(BlankArray);
-
+        console.log(DisplayedWord);
 //GUESSING FUNCTION
         document.onkeyup = function (event) {
-
+            
             if (Word.indexOf(event.key) !== -1) {
                 var guess = Word.indexOf(event.key);
                 BlankArray[guess] = event.key;
                 console.log(guess);
-                // DisplayedWord[guess] = event.key;
-                // var guessNumber = Word.indexOf(event.key);
-                // console.log(guessNumber);
-//Need to display the word again
-                
-                //BlankArray[guessNumber] = guess;
             };
+           
+            //Update the blank array with the letter
             DisplayedWord = "";
 
-            for (var i = 0; i < WordLength; i++) {
-                    DisplayedWord += (BlankArray[i] + "\xa0\xa0");
-                };
+            for (var i = 0; i < BlankArray.length; i++) {
+                DisplayedWord += (BlankArray[i] + "\xa0\xa0");
                 document.getElementById("spaces").innerHTML = DisplayedWord;
-        
+                console.log(DisplayedWord);
+            }; 
         };
+        
+        
 
+//Update the HTML in the word div
 
-            document.getElementById("spaces").innerHTML = DisplayedWord;
+           
+           console.log(DisplayedWord);
 
             document.getElementById("Wins").innerHTML = "Wins: " + Wins;
             document.getElementById("Losses").innerHTML = "Losses: " + Losses;
