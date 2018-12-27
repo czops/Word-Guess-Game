@@ -102,15 +102,18 @@
 
         console.log(BlankArray);
         console.log(DisplayedWord);
+        
 //GUESSING FUNCTION
         document.onkeyup = function (event) {
-            
-            if (Word.indexOf(event.key) !== -1) {
-                var guess = Word.indexOf(event.key);
-                BlankArray[guess] = event.key;
-                console.log(guess);
+
+            for (var i = 0; i < WordLength; i++) {
+                if (Word[i] == event.key) {
+                    var guess = i;
+                    BlankArray[guess] = event.key;
+                    console.log(guess);
+                };
             };
-           
+
             //Update the blank array with the letter
             DisplayedWord = "";
 
@@ -118,19 +121,19 @@
                 DisplayedWord += (BlankArray[i] + "\xa0\xa0");
                 document.getElementById("spaces").innerHTML = DisplayedWord;
                 console.log(DisplayedWord);
-            }; 
+            };
         };
-        
-        
 
-//Update the HTML in the word div
 
-           
-           console.log(DisplayedWord);
 
-            document.getElementById("Wins").innerHTML = "Wins: " + Wins;
-            document.getElementById("Losses").innerHTML = "Losses: " + Losses;
-            document.getElementById("GuessesLeft").innerHTML = "Guesses Left: " + GuessesLeft;
+        //Update the HTML in the word div
+
+
+        console.log(DisplayedWord);
+
+        document.getElementById("Wins").innerHTML = "Wins: " + Wins;
+        document.getElementById("Losses").innerHTML = "Losses: " + Losses;
+        document.getElementById("GuessesLeft").innerHTML = "Guesses Left: " + GuessesLeft;
 
 
 //Section: FUNCTIONS FOR LETTER GUESSING EXECUTION
