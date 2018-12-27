@@ -92,6 +92,7 @@
         // };
         var GuessesLeft = WordLength + 5;
         var DisplayedWord = "";
+        var guess = 0;
 
         for (var i = 0; i < WordLength; i++) {
             BlankArray[i] = "_";
@@ -100,18 +101,24 @@
 
         console.log(BlankArray);
 
+//GUESSING FUNCTION
+        document.onkeyup = function (event) {
 
-        // document.onkeyup = function (event) {
+            if (Word.indexOf(event.key) !== -1) {
+                var guess = Word.indexOf(event.key);
+                BlankArray[guess] = event.key;
+                console.log(guess);
+                // var guessNumber = Word.indexOf(event.key);
+                // console.log(guessNumber);
+//Need to display the word again
+                document.getElementById("spaces").innerHTML = DisplayedWord;
+                //BlankArray[guessNumber] = guess;
 
-        //     if (Word.indexOf(event.key) !== -1) {
-        //         var guess = event.key;
-        //         console.log(guess);
-        //         var guessNumber = Word.indexOf(event.key);
-        //         console.log(guessNumber);
-
-        //         BlankArray[guessNumber] = guess;
-
-        //     }
+                for (var i = 0; i < WordLength; i++) {
+                    DisplayedWord += (BlankArray[i] + "\xa0\xa0");
+                };
+            };
+        };
 
 
             document.getElementById("spaces").innerHTML = DisplayedWord;
