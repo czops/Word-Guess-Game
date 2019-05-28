@@ -1,28 +1,35 @@
-
-
 //In the list of novels, there's merit to also having the program read only lowercase
 var WordsList = {
-    Grendel: "Grendel",
+    Grendel: ["g", "r", "e", "n", "d", "e", "l"],
     //TheScarletLetter: "The Scarlet Letter",
-    Hamlet: "Hamlet",
+    Hamlet: ["h", "a", "m", "l", "e", "t"],
     //AnimalFarm: "Animal Farm",
     //BraveNewWorld: "Brave New World",
-    Night: "Night",
+    Night: ["n", "i", "g", "h", "t"],
     //TheOdyssey: "The Odyssey",
     //PrideAndPrejudice: "Pride and Prejudice"
-    Hiroshima: "Hiroshima",
-    Macbeth: "Macbeth"
+    Hiroshima: ["h", "i", "r", "o", "s", "h", "i", "m", "a"],
+    Macbeth: ["m", "a", "c", "b", "e", "t", "h"]
 };
 
-var CitiesList = ["Warsaw", "London", "Saint Petersburg", "Ankara", "Shanghai", "Duluth", "New Orleans", "San Jose", "Chicago", "New York"];
 
 //Section: VARIABLES
 var Wins = 0;
 var Losses = 0;
 
 
+
+//Comment: When the page loads, the document should select a word from WordsList and display the appropriate number of spaces
+var ChosenWord = function (obj) {
+    var keys = Object.keys(obj)
+    return obj[keys[keys.length * Math.random() << 0]];
+};
+
+var Word = ChosenWord(WordsList); //This is an array of the chosen book title
+var WordLength = Word.length; //This is an integer for the number of entries in the Word array
 var Blanks = 0;
 var BlankArray = [];
+var GuessesArray =[];
 
 //Comment: This was useful to see if the above random word chooser was working
 // for (var i = 0; i < WordLength ; i++) {
@@ -35,79 +42,64 @@ var BlankArray = [];
 //     document.getElementById("spaces").innerHTML +=  Word[i] + "\xa0\xa0\xa0";
 
 // };
-var GuessesLeft = 8;
+
 var DisplayedWord = "";
-var guess = "";
+var guess = 0;
+let GuessesLeft = WordLength + 5;
 
-var ChooseWord = function (obj) {
-    var keys = Object.keys(obj)
-    return obj[keys[keys.length * Math.random() << 0]];
+for (var i = 0; i < WordLength; i++) {
+    BlankArray[i] = "_";
+    DisplayedWord += (BlankArray[i] + "\xa0\xa0");
+    document.getElementById("spaces").innerHTML = DisplayedWord;
 };
-
-var ChosenRandomWord = ChooseWord(WordsList);
-
-console.log(ChosenRandomWord);
-
-
-
-var MakeArrayForChosenRandomWord = function (word) {
-    for (var i = 0; i < word.length; i++) {
-        BlankArray[i] = "_";
-        DisplayedWord += (BlankArray[i] + "\xa0\xa0");
-        document.getElementById("spaces").innerHTML = DisplayedWord;
-    };
-}
-
-MakeArrayForChosenRandomWord(ChosenRandomWord);
 
 console.log(BlankArray);
 console.log(DisplayedWord);
 
-
-
 //GUESSING FUNCTION
-//Comment: When the page loads, the document should select a word from WordsList and display the appropriate number of spaces
-
-var Word = ChooseWord(WordsList); //This is the word string
-var WordLength = Word.length; //This is an integer for the number of entries in the Word array
-
-
 document.onkeyup = function (event) {
+    GuessesArray.push(event.key);
+    console.log(GuessesArray);
+
+    for (var i = 0; i < WordLength; i++) {
+        if (Word[i] == event.key) {
+            BlankArray[i] = event.key;
+            console.log(i);
+        }
+    };
+
     //Update the blank array with the letter
+    DisplayedWord = "";
+    DisplayedGuesses = "";
+    GuessesLeft = WordLength + 5 - GuessesArray.length;
+
     for (var i = 0; i < BlankArray.length; i++) {
-        DisplayedWord = "";
-        DisplayedWord += BlankArray[i + 1] + "\xa0\xa0";
+        DisplayedWord += (BlankArray[i] + "\xa0\xa0");
         document.getElementById("spaces").innerHTML = DisplayedWord;
         console.log(DisplayedWord);
     };
-};
 
-var CheckWord = function () {
-
-    for (var i = 0; i < WordLength; i++) {
-        if (Word.charAt(i) == event.key) {
-            var guess = Word.charAt(i);
-            BlankArray[i] = event.key;
-            console.log(guess);
-        };
-        // else if (i = WordLength-1 && Word.charAt(i-1) !== event.key) {
-        //     GuessesLeft -= 1;
-        //     document.getElementById("GuessesLeft").innerHTML = "Guesses Left: " + GuessesLeft;
-        //     document.getElementById("YourGuesses").innerHTML = "Guesses: " + event.key + " ";
-        // };
+    for (var i = 0; i < GuessesArray.length; i++) {
+        DisplayedGuesses += (GuessesArray[i] + "\xa0\xa0");
+        document.getElementById("YourGuesses").innerHTML = DisplayedGuesses;
+        console.log(DisplayedGuesses);
     };
 
+    
+
 };
 
+
+
 //Update the HTML in the word div
-ChooseWord();
 
-
-// console.log(DisplayedWord);
 
 document.getElementById("Wins").innerHTML = "Wins: " + Wins;
 document.getElementById("Losses").innerHTML = "Losses: " + Losses;
 document.getElementById("GuessesLeft").innerHTML = "Guesses Left: " + GuessesLeft;
+
+//document.getElementById("YourGuesses").innerHTML = "Guessed Letters: " + GuessesArray;
+
 
 
 //Section: FUNCTIONS FOR LETTER GUESSING EXECUTION
